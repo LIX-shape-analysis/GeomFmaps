@@ -1,20 +1,28 @@
 Here are the steps one has to follow to run this algorithm:
 
-0) requirements to run this algorithm :
-trimesh, tensorflow, etc...
+## 0. Requirements to run this algorithm
+Tensorflow 1.12
 
-1) get a training set and a test set. This algorithm works with meshes, so the train and test set need to be made of meshes (we support off and ply files). Also, right now this algorithm can only deal with meshes that are aligned to one axis (they can be rotated along this axis). Basically, that means you need to make sure train and test sets are aligned to the same axis if you want to learn the matching.
+## 1. Dataset
+You need a training set and a test set. This algorithm works with meshes, so the train and test set need to be made of meshes (off files are supported).
+Also, make sure your meshes are aligned to one axis . They can be rotated along this axis if you use data augmentation.
+Basically, train and test sets need to be aligned to the same axis.
 
-2) preprocess data. Run preprocess_all_data (matlab code ?).
-this will compute some functions over your meshes, called eigen functions of the intrinsic laplacian.
-they are stored under "spectral" folders and will be used for the loss, mainly. to each of these eigenfunctions corresponds an eigenvalue. That is why we store, evecs, evals, and evecs_trans (which is the Moore pseudo-inverse of evecs.. can we remove it ? store only weight matrix ?).
+## 2. Preprocess data
+Go to MATLAB_TOOLS folder, adapt the code there to your dataset.
+This will compute the eigen functions of the intrinsic Laplacian on the meshes and store them in a «spectral/» folder.
 
-3) create a file with the name of your training set for instance, with the parameters you want for your model. link the paths so the algo knows where to find the data it requires to run properly.
+## 3. Create a dataset and config class for you train and test set
+Create a file with the name of your training set for instance, with the parameters you want for your model. link the paths so the algo knows where to find the data it requires to run properly.
 
-4) you should be ready to train your model ! create a script with your running file. Your model will be stored in Results. You can check out the functional maps it produces while training to see if they look reasonnable.
+## 4. Link paths and run train.py
+You should be ready to train your model ! Use your new dataset class in train.py, your model will be stored in the «results/» folder.
 
-5) prepare the paths to your test set and test your model. The results will be stored in tests.
+## 5. Test your model by running test.py
+Take the log name of your model inside the «results/» folder, and put it in your test.py file. Change the test set to the one you want. The test results will be .npy files, storing the functional maps, and output descriptors, in the «test/» folder.
 
-6) evaluation of the tests. this requires to adapt the evaluation files already present in the code. The current method evaluates the error by computing the geodesic distance between the ground truth point and the point your model predicted, for each point of the source shape. That requires the Geodesic Distance Matrix, that you need to store and link to the evaluation script.
+## 6. Evaluation of the results
+Go to «eval_scripts/» folder. You need ground truth between the pairs of shapes you want to evaluate. The current methods evaluates the error by computing the geodesic distance between the ground truth point and the point your model predicted on the target shape, for each point of the source shape. That requires the Geodesic Distance Matrix of the target shape, that you need to store and link to the evaluation script.
 
-7) you can now get a score ! play with the KPConv architecture and see if you can get better results.
+## 7. Have fun
+You can now get a score ! play with the KPConv architecture and see if you can get better results.
