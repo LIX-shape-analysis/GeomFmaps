@@ -2,7 +2,8 @@
 
 This is our implementation of Deep Geometric Maps, a Shape Matching Network that builds comprehensive features from point cloud data, projects them in spectral basis to compute accurate functional maps. Here is a [link to the paper](https://arxiv.org/abs/2003.14286).
 
-![TEASER](https://raw.githubusercontent.com/LIX-shape-analysis/GeomFmaps/master/images/TEASER.png "TEASER")
+<!-- ![TEASER](https://raw.githubusercontent.com/LIX-shape-analysis/GeomFmaps/master/images/TEASER.png "TEASER") -->
+<img align="center" src="https://raw.githubusercontent.com/LIX-shape-analysis/GeomFmaps/master/images/TEASER.png" width="300">
 
 This code was written by Nicolas Donati, although a large part of it is taken from the code of [KPConv](https://github.com/HuguesTHOMAS/KPConv). Indeed, we use KPConv as a feature extractor in our method.
 
