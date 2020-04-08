@@ -27,7 +27,7 @@ cd GeomFmaps
 * Datasets : you will need a training set and a test set. This algorithm works with meshes, so the train and test set need to be made of meshes (off files are supported).
 Also, make sure your meshes are **aligned to one axis**. They can be rotated along this axis if you use data augmentation. Naturally, train and test sets need to be aligned to the same axis.
 
-* Preprocessing : go to MATLAB_TOOLS folder, adapt the code there to your dataset. The matlab script will compute the eigen functions of the intrinsic Laplacian on the meshes and store them in a «spectral/» folder.
+* Preprocessing : go to the «MATLAB_Tools/» folder, adapt the code there to your dataset. The matlab script will compute the eigen functions of the intrinsic Laplacian on the meshes and store them in a «spectral/» folder.
 
 * Add a new config Class : Create a file with the name of your training (and test) set, with the parameters you want for your model in the «config/» folder. Some are already included (FAUST, SCAPE and SHREC re-meshed for instance).
 
@@ -47,10 +47,10 @@ python test.py
 The test results will be stored in .npy files, containing the functional maps, and output descriptors, in the «test/» folder.
 
 ## Evaluation of the results
-Go to «eval_scripts/» folder. **You need ground truth between the pairs of shapes you want to evaluate**. As described in the paper, the error corresponds to the geodesic distance between the ground truth point and the point your model predicted on the target shape, for each point of the source shape. That requires the Geodesic Distance Matrix of the target shape, that you need to store and link to the evaluation script. You can then run :
+Go to «eval_scripts/» folder. **You need ground truth between the pairs of shapes you want to evaluate**. As described in the paper, the error corresponds to the geodesic distance between the ground truth point and the point your model predicted on the target shape, for each point of the source shape. That requires the Geodesic Distance Matrix of the target shape, that you need to store and link to the evaluation script. You can then run (here to evaluate on faust re-meshed) :
 ``` bash
 cd eval_scripts
-python test.py
+python eval_faust.py
 ```
 
 ## Have fun
