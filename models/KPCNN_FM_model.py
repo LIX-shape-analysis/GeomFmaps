@@ -34,9 +34,9 @@ import sys
 # Convolution functions
 from models.network_blocks import assemble_CNN_FM_blocks, shape_matching_head, shape_matching_head_2
 
-from DFM_Utils.model.loss import penalty_bijectivity, penalty_ortho, penalty_desc_orientation,\
-    penalty_laplacian_commutativity, penalty_desc_commutativity
-from DFM_Utils.model.losses.supervised_penalty import *
+#from losses import penalty_bijectivity, penalty_ortho, penalty_desc_orientation,\
+#    penalty_laplacian_commutativity, penalty_desc_commutativity
+from losses.supervised_penalty import *
 
 
 # ----------------------------------------------------------------------------------------------------------------------

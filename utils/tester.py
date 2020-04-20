@@ -33,10 +33,6 @@ from sklearn.neighbors import KDTree
 # PLY reader
 from utils.ply import read_ply, write_ply
 
-# Metrics
-from utils.metrics import IoU_from_confusions
-from sklearn.metrics import confusion_matrix
-
 from tensorflow.python.client import timeline
 import json
 
