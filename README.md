@@ -1,4 +1,4 @@
-# Deep Geometric Maps: Robust Feature Learning for Shape Correspondence [Paper](https://arxiv.org/abs/2003.14286)
+# Deep Geometric Maps: Robust Feature Learning for Shape Correspondence [[Paper]](https://arxiv.org/abs/2003.14286)
 
 This is our implementation of Deep Geometric Maps, a Shape Matching Network that builds comprehensive features from point cloud data, projects them in spectral basis to compute accurate functional maps.<!-- Here is a [link to the paper](https://arxiv.org/abs/2003.14286).-->
 
