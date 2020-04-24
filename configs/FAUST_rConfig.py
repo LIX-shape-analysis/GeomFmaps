@@ -69,7 +69,7 @@ class FAUST_rConfig(Config):
     first_features_dim = 128
 
     # Functional map parameters
-    neig = 70  # number of eigenvectors for the functional map. needs to be lower than that of preprocessing
+    neig = 30  # number of eigenvectors for the functional map. needs to be lower than that of preprocessing
     neig_full = neig  # number of eigenvectors for spectral ground truth in loss computation
     lam_reg = 1e-3  # laplacian regularization. Higher than that leeds to too much importance in Laplacian commut.
 

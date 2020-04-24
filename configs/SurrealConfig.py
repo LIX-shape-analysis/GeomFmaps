@@ -69,8 +69,8 @@ class SurrealConfig(Config):
     first_features_dim = 128
 
     # Functional map parameters
-    neig = 100  # number of eigenvectors for the functional map. needs to be lower than that of preprocessing
-    neig_full = 100  # number of eigenvectors for spectral ground truth in loss computation
+    neig = 30  # number of eigenvectors for the functional map. needs to be lower than that of preprocessing
+    neig_full = neig  # number of eigenvectors for spectral ground truth in loss computation
     lam_reg = 1e-3 # None 1e-3  # laplacian regularization. Higher than that leeds to too much importance in Laplacian commut.
 
     ####################
