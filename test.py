@@ -32,7 +32,6 @@ from utils.config import Config
 from configs.SurrealConfig import SurrealConfig
 from configs.FAUST_rConfig import FAUST_rConfig
 from configs.SCAPE_rConfig import SCAPE_rConfig
-from configs.SHRECConfig import SHRECConfig
 from configs.SHREC_rConfig import SHREC_rConfig
 
 from utils.tester import ModelTester
@@ -42,7 +41,6 @@ from models.KPCNN_FM_model import KernelPointCNN_FM
 from datasets.Surreal import SurrealDataset
 from datasets.FAUST_remeshed import FAUST_r_Dataset
 from datasets.SCAPE_remeshed import SCAPE_r_Dataset
-from datasets.SHREC import SHREC_Dataset
 from datasets.SHREC_remeshed import SHREC_r_Dataset
 
 
@@ -72,7 +70,7 @@ def test_caller(path, step_ind):
     # Load the model parameters
     ###########################
 
-    test_dataset = 'SHREC_r'  # 'FAUST_r'  # 'SCAPE_r'  # 'SHREC'
+    test_dataset = 'FAUST_r'  # 'FAUST_r'  # 'SCAPE_r'  # 'SHREC_r'
 
     # Load model parameters at train time (but we also need a test config)
     #config_train = Config()
@@ -118,22 +116,17 @@ def test_caller(path, step_ind):
 
     config.epoch_steps = 0  # to avoid it should be None
     config.load(path)  # get the exact same parameters for the network (which will be re-loaded afterwards)
-    # print(config.neig, config.epoch_steps)
+    print('number of eigenvectors in loaded model :', config.neig)  #, config.epoch_steps)
 
-    # re-define some config parameters for testing
+    # re-define some config parameters for testing by overwriting config
     print('rotations at training were set to :', config.augment_rotation)
     config.augment_rotation = 'none'
     config.batch_num = 1
-    # config.lam_reg = None  # no need here to force funnel shape so much (can be 1e-4 or None ?)
-
     config.split = 'test'
     dataset.split = 'test'
     dataset.num_train = -1  # we want all test data
-    #config.first_subsampling_dl = 0.48
-    #config.neig = 70; config.neig_full = 70 
-    dataset.neig = 100; dataset.neig_full = 100
     dataset.load_subsampled_clouds(config.first_subsampling_dl)
-    print(config.neig, dataset.neig)
+
     # Initialize input pipelines to get batch generator
     dataset.init_test_input_pipeline(config)
 

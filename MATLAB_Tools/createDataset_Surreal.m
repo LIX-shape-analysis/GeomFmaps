@@ -6,16 +6,16 @@ addpath('./Utils/');
 % read adequate files
 sourcepath = '../../../../media/donati/Data1/Datasets/';  %data path
 dataset = 'shapes_surreal/';  %name of the dataset
-filetype = 'pts';  %supported : off, obj, ply and pts + {cmn triangles}
+filetype = 'pts';  %supported : off, obj, ply and pts + {file with common triangulation}
 tri_name = 'TRIV_surreal.txt';  %only for pts files
 
 datafolder = [sourcepath dataset filetype '/'];
 files = dir(fullfile([datafolder ''], ['*.' filetype]));
 n_files = length(files)
 
-if filetype == 'pts'  % read common triangulation beforehand
+if filetype == 'pts'  % in this case, read common triangulation beforehand
     Tname = [sourcepath dataset tri_name];
-    T = load(Tname);
+    T = load(Tname); T = T + 1;
 end
 
 n_files = 500
@@ -27,6 +27,7 @@ for pts = 1:n_files
     sourcename = split(files(pts).name, '.'); % split to get rif of file extension
     sourcename = sourcename{1}  % print the name
     
+    %% read vertices and faces (from different data type)
     if filetype == 'pts'
         V = [];
         fid = fopen(Vname);
@@ -35,18 +36,7 @@ for pts = 1:n_files
             if ~ischar(tline),   break,   end  % exit at end of file
             V = [V; sscanf(tline,'%f %f %f')'];
         end
-        fclose(fid);
-        
-        Tname = strcat(sourcepath, dataset, tri_name);
-        T = [];
-        fid = fopen(Tname);
-        while 1
-            tline = fgetl(fid);
-            if ~ischar(tline),   break,   end  % exit at end of file
-            T = [T; sscanf(tline,'%i %i %i')'];
-        end
-        fclose(fid);
-        T = T + 1;
+        fclose(fid);    
     end
     if filetype == 'off'
         [V,T] = readOff(Vname);

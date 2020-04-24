@@ -16,22 +16,20 @@ import time
 import os
 import numpy as np
 
-# configs
+# configs (used in training)
 from configs.SurrealConfig import SurrealConfig
 from configs.FAUST_rConfig import FAUST_rConfig
 from configs.SCAPE_rConfig import SCAPE_rConfig
-from configs.SHRECConfig import SHRECConfig
 
 # Custom libs
 from utils.config import Config
 from utils.trainer import ModelTrainer
 from models.KPCNN_FM_model import KernelPointCNN_FM
 
-# Dataset
+# Dataset (used in training)
 from datasets.Surreal import SurrealDataset
 from datasets.FAUST_remeshed import FAUST_r_Dataset
 from datasets.SCAPE_remeshed import SCAPE_r_Dataset
-from datasets.SHREC import SHREC_Dataset
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -84,7 +82,7 @@ if __name__ == '__main__':
         config = SCAPE_rConfig()
         dataset = SCAPE_r_Dataset(config)
     else:
-        raise ValueError('dataset not supported')
+        raise ValueError('dataset currently not supported.\nEither you made a typo or you need to create your own config and dataset class.')
 
     # Create subsample clouds of the models
     dl0 = config.first_subsampling_dl
