@@ -26,7 +26,9 @@ cd GeomFmaps
 
 * Datasets : you will need a training set and a test set. This algorithm works with meshes, so the train and test set need to be made of meshes (off files are supported).
 Also, make sure your meshes are **aligned to one axis**. They can be rotated along this axis if you use data augmentation. Naturally, train and test sets need to be aligned to the same axis.<br/>
-We provide [**here**](https://nuage.lix.polytechnique.fr/index.php/s/LJFXrsTG22wYCXx) some of the data we used in the paper. Namely, you will find **FAUST re-meshed**, **SCAPE re-meshed** (used as train and test in our *Experiment 1*, and as test in *Experiment 2*), as well as the first 500 shapes of the 5000 shapes of **Surreal** (from the 230K generated in [3D-Coded](https://github.com/ThibaultGROUEIX/3D-CODED)) we used in *Experiment 2*. Last but not least, there is our **SHREC re-meshed** version of SHREC'19 dataset (used as test in *Experiment 2*).
+We provide [**here**](https://nuage.lix.polytechnique.fr/index.php/s/LJFXrsTG22wYCXx) some of the data we used in the paper. Namely, you will find **FAUST re-meshed**, **SCAPE re-meshed** (used as train and test in our *Experiment 1*, and as test in *Experiment 2*), as well as the first 500 shapes of the 5000 shapes of **Surreal** (from the 230K generated in [3D-Coded](https://github.com/ThibaultGROUEIX/3D-CODED)) we used for training in *Experiment 2*.
+If you want all 5000 shapes, we also provide the indices of our sampling from 3D-CODED surreal training shapes. When we used this dataset with less data (namely: 2000, 500, 100), we simply took the first shapes from our 5000 shapes training set.
+Last but not least, there is our **SHREC re-meshed** version of SHREC'19 dataset (used as test in *Experiment 2*).
 
 * Preprocessing : go to the «MATLAB_Tools/» folder, adapt the code there to your dataset. The matlab script will compute the eigen functions of the intrinsic Laplacian on the meshes and store them in a «spectral/» folder.
 
